@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import joblib
 from datetime import datetime
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingRegressor
 from sklearn.model_selection import train_test_split
@@ -575,3 +574,4 @@ with tab3:
     st.header("3. Base de Datos de Alimentos")
     st.markdown("Datos nutricionales de referencia por 100g/100ml utilizados en el cálculo de la ingesta.")
     st.dataframe(ALIMENTOS_DF, use_container_width=True)
+
