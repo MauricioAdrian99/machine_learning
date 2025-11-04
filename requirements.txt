@@ -1,0 +1,7 @@
+streamlit
+pandas
+numpy
+scikit-learn
+# Si quieres especificar versiones exactas, podrías usar:
+# streamlit==1.x.x
+# scikit-learn==1.3.2
