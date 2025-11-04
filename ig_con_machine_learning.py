@@ -358,7 +358,7 @@ if 'signos_vitales' not in st.session_state:
         'is_diabetic': False
     }
 
-st.title("🇵🇾 Sistema Nutricional y de Riesgo Cardiovascular")
+st.title("SISTEMA DE SEGUIMIENTO NUTRICIONAL Y MÉDICO 24H CON ML")
 st.markdown("### Evaluación Integral con Machine Learning (Basado en alimentos paraguayos)")
 
 # --- SIDEBAR: Registro de Signos Vitales ---
@@ -574,4 +574,5 @@ with tab3:
     st.header("3. Base de Datos de Alimentos")
     st.markdown("Datos nutricionales de referencia por 100g/100ml utilizados en el cálculo de la ingesta.")
     st.dataframe(ALIMENTOS_DF, use_container_width=True)
+
 
