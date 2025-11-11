@@ -24,9 +24,7 @@ def crear_base_alimentos():
             'Asado de res magro', 'Asado de costilla de res', 'Chorizo mixto cerdo-vacuno',
             'Cerveza', 'Vino tinto', 'Jugo en caja', 'Gaseosa coca cola',
             'Feijão', 'Farofa', 'Pasta de margarina', 'Pasta de manteca',
-            'Coquito de harina', 'Galleta integral', 'Asadito o Espetiño', 'Chipa Guasu',
-            'Ensalada de lechuga con tomate (sin aderezos)',
-            'Ensalada de lechuga con tomate (con aderezos)'
+            'Coquito de harina', 'Galleta integral', 'Asadito o Espetiño', 'Chipa Guasu', 'Ensalada de lechuga con tomate'
         ],
         'calorias_100g': [
             112, 165, 280, 320, 250, 15, 85, 285,
@@ -34,9 +32,7 @@ def crear_base_alimentos():
             239, 1, 1, 42, 196, 250, 330, 285,
             43, 85, 54, 37,
             142, 365, 717, 737,
-            410, 450, 250, 230,
-            25,   
-            80    
+            410, 450, 250, 230, 25    
         ],
         'cho_100g': [
             26, 25, 35, 65, 45, 2, 3, 30,
@@ -44,9 +40,7 @@ def crear_base_alimentos():
             0, 0, 0, 4.8, 1, 0, 0, 2,
             3.6, 2.6, 13, 10,
             25, 75, 1, 1,
-            80, 70, 1.5, 22.5,
-            3,    
-            4     
+            80, 70, 1.5, 22.5, 3
         ],
         'ig': [
             70, 85, 65, 75, 70, 15, 20, 70,
@@ -54,9 +48,7 @@ def crear_base_alimentos():
             0, 0, 0, 30, 30, 0, 0, 30,
             110, 16, 55, 53,
             40, 85, 0, 0,
-            75, 71, 0, 57.5,
-            17,   
-            18    
+            75, 71, 0, 57.5, 17  
         ],
         'alcohol_grados': [
             0, 0, 0, 0, 0, 0, 0, 0,
@@ -64,9 +56,7 @@ def crear_base_alimentos():
             0, 0, 0, 0, 0, 0, 0, 0,
             4.5, 12, 0, 0,
             0, 0, 0, 0,
-            0, 0, 0, 0,
-            0,    
-            0     
+            0, 0, 0, 0, 0   
         ]
     }
     return pd.DataFrame(alimentos_data)
@@ -599,4 +589,5 @@ with tab3:
     st.header("3. Base de Datos de Alimentos")
     st.markdown("Datos nutricionales de referencia por 100g/100ml utilizados en el cálculo de la ingesta.")
     st.dataframe(ALIMENTOS_DF, use_container_width=True)
+
 
