@@ -25,7 +25,7 @@ def crear_base_alimentos():
             'Cerveza', 'Vino tinto', 'Jugo en caja', 'Gaseosa coca cola',
             'Feijão', 'Farofa', 'Pasta de margarina', 'Pasta de manteca',
             'Coquito de harina', 'Galleta integral', 'Asadito o Espetiño', 'Chipa Guasu', 'Ensalada de lechuga con tomate',
-            'Ensalada Rusa'
+            'Ensalada Rusa', 'Ensalada verde simple'
         ],
         'calorias_100g': [
             112, 165, 280, 320, 250, 15, 85, 285,
@@ -34,7 +34,7 @@ def crear_base_alimentos():
             43, 85, 54, 37,
             142, 365, 717, 737,
             410, 450, 250, 230, 25,
-            165
+            165, 40
         ],
         'cho_100g': [
             26, 25, 35, 65, 45, 2, 3, 30,
@@ -43,7 +43,7 @@ def crear_base_alimentos():
             3.6, 2.6, 13, 10,
             25, 75, 1, 1,
             80, 70, 1.5, 22.5, 3,
-            11
+            11, 2
         ],
         'ig': [
             70, 85, 65, 75, 70, 15, 20, 70,
@@ -52,7 +52,7 @@ def crear_base_alimentos():
             110, 16, 55, 53,
             40, 85, 0, 0,
             75, 71, 0, 57.5, 17,
-            63
+            63, 15
         ],
         'alcohol_grados': [
             0, 0, 0, 0, 0, 0, 0, 0,
@@ -61,7 +61,7 @@ def crear_base_alimentos():
             4.5, 12, 0, 0,
             0, 0, 0, 0,
             0, 0, 0, 0, 0,
-            0
+            0, 0
         ]
     }
     return pd.DataFrame(alimentos_data)
@@ -594,6 +594,7 @@ with tab3:
     st.header("3. Base de Datos de Alimentos")
     st.markdown("Datos nutricionales de referencia por 100g/100ml utilizados en el cálculo de la ingesta.")
     st.dataframe(ALIMENTOS_DF, use_container_width=True)
+
 
 
 
