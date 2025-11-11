@@ -350,10 +350,10 @@ if 'signos_vitales' not in st.session_state:
     # CORRECCIÓN DE ERROR: Inicialización de valores numéricos como float
     st.session_state.signos_vitales = {
         'age': 40, 
-        'pa_sistolica': 120.0,  # Corregido: float
-        'pa_diastolica': 80.0,   # Corregido: float
-        'fc': 70.0,              # Corregido: float
-        'fr': 16.0,              # Corregido: float
+        'pa_sistolica': 120.0, # Corregido: float
+        'pa_diastolica': 80.0,  # Corregido: float
+        'fc': 70.0,             # Corregido: float
+        'fr': 16.0,             # Corregido: float
         'sato2': 98, 
         'is_diabetic': False
     }
@@ -449,7 +449,7 @@ with tab2:
     # Botón de cálculo y evaluación
     if st.button("🔄 Ejecutar Evaluación Completa (ML + Nutrición)"):
         
-        # 1. ACUMULACIÓN DE DATOS NUTRICIONALES
+        # 1. ACUMULACIÓN DE DATOS NUTRICIONALES Y EVALUACIÓN POR COMIDA
         total_24h = {
             'calorias_total_24h': 0, 'cho_total_24h': 0, 'ig_ponderado_total': 0, 
             'carga_total_24h': 0, 'alcohol_total_24h': 0, 'indice_alcoholico_24h': 0,
@@ -460,6 +460,7 @@ with tab2:
         for tipo, componentes in st.session_state.comidas_dia.items():
             resultados = evaluar_riesgo_comida(componentes, ALIMENTOS_DF)
             acumular_totales_24h_completo(resultados, total_24h)
+            # Guardamos los resultados completos de la comida para mostrarlos después
             comidas_evaluadas[tipo] = {'resultados': resultados}
             
         # Calcular el IG promedio de la comida total
@@ -539,11 +540,25 @@ with tab2:
         col_n1.metric("Carbohidratos Totales", f"{resultados_24h['cho_total']:.1f} g")
         col_n2.metric("Alcohol Total (puro)", f"{resultados_24h['indice_alcoholico']:.1f} g")
         
-        # Mostrar tabla de detalles de todas las comidas
-        st.markdown("#### Detalle por Alimento Consumido")
-        df_detalles = pd.DataFrame(total_24h['detalles_24h']).round(1)
-        st.dataframe(df_detalles, hide_index=True, use_container_width=True)
+        # ⭐️ INICIO DEL CAMBIO: Mostrar detalle por comida ⭐️
+        
+        st.markdown("### 🍽️ Detalle por Momento de Comida")
+        
+        for tipo_comida, data in comidas_evaluadas.items():
+            detalles = data['resultados']['detalles']
+            
+            if detalles:
+                # Usamos un expander para mostrar el detalle de cada comida
+                with st.expander(f"**{tipo_comida}** | **Calorías:** {data['resultados']['calorias_total']:.0f} kcal | **Carga Glucémica:** {data['resultados']['carga_total']:.1f}"):
+                    df_detalles = pd.DataFrame(detalles).round(1)
+                    # Renombrar columnas para mayor claridad
+                    df_detalles.columns = ['Alimento', 'Cantidad (g/ml)', 'Calorías (kcal)', 'CHO (g)', 'IG']
+                    st.dataframe(df_detalles, hide_index=True, use_container_width=True)
+            else:
+                st.info(f"No hay alimentos registrados para **{tipo_comida}**.")
 
+        # ⭐️ FIN DEL CAMBIO ⭐️
+        
         st.markdown("---")
         
         # Diagnósticos y Recomendaciones
@@ -574,5 +589,3 @@ with tab3:
     st.header("3. Base de Datos de Alimentos")
     st.markdown("Datos nutricionales de referencia por 100g/100ml utilizados en el cálculo de la ingesta.")
     st.dataframe(ALIMENTOS_DF, use_container_width=True)
-
-
